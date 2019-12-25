@@ -7,3 +7,24 @@ dt_ts_plot[, l_plot := mapply(
   p1 = p1, # single plot as a column list
   p2 = p2
 )]
+
+
+
+
+
+
+library(ggplot2)
+
+# data: class(z) -> mts
+z <- ts(matrix(rnorm(300), 100, 3), start=c(1961, 1), frequency=12)
+
+# ggplot2 version. data transformation is critical
+ggplot(
+  melt(data.frame(time=as.numeric(time(z)), z), id.vars="time"),
+  aes(time, value)) + 
+  geom_line() +
+  facet_grid(variable ~ .)
+
+# basic graphics package supports easy mts plot
+plot(z)
+
