@@ -1,9 +1,9 @@
 dt_ts_plot[, l_plot := mapply(
-  FUN = function(title, tmu, asp) {
+
+  FUN = function(p1, p2) {
 
     egg::ggarrange(p1,p2) %>% list()
   },
-  title = title,
   p1 = p1, # single plot as a column list
   p2 = p2
 )]
